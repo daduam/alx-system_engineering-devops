@@ -1,0 +1,2 @@
+#!/bin/bash
+echo $PATH | cut -d ':' --output-delimiter=' ' -f 1- | wc -w
