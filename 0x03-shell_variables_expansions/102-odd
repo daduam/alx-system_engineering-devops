@@ -1,0 +1,2 @@
+#!/bin/bash
+cat -n | cut -c 6- | grep -v ^[02468] | cut -f 2
