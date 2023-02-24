@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# This script does a couple of things
+function create_pid_file()
+{
+  sudo touch /var/run/myscript.pid
+  sudo chown "$USER":"$USER" /var/run/myscript.pid
+  echo $$ > /var/run/myscript.pid
+}
+
+function cleanup()
+{
+  sudo rm /var/run/myscript.pid
+  exit
+}
+
+create_pid_file
+
+trap 'echo "I hate the kill command"; cleanup' SIGTERM
+trap 'echo "Y U no love me?!"' SIGINT
+trap cleanup SIGQUIT
+
+while true
+do
+  echo "To infinity and beyond"
+done
