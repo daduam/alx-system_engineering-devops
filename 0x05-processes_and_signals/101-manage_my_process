@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# This script manages manage_my_process
+
+set -e
+
+function create_pid_file()
+{
+  sudo touch /var/run/my_process.pid
+  sudo chown "$USER":"$USER" /var/run/my_process.pid
+  echo $! > /var/run/my_process.pid
+}
+
+set +e
+
+case "$1" in
+  start)
+    ./manage_my_process &
+    create_pid_file
+    echo "manage_my_process started"
+    ;;
+  stop)
+    kill "$(cat /var/run/my_process.pid)"
+    sudo rm /var/run/my_process.pid
+    echo "manage_my_process stopped"
+    ;;
+  restart)
+    kill "$(cat /var/run/my_process.pid)"
+    sudo rm /var/run/my_process.pid
+    ./manage_my_process &
+    create_pid_file
+    echo "manage_my_process restarted"
+    ;;
+  *)
+    echo "Usage: manage_my_process {start|stop|restart}"
+esac
