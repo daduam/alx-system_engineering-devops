@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Connects to remote server using ssh with private key
+ssh ubuntu@100.26.221.167
