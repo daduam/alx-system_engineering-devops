@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Install nginx web server
+
+apt-get update
+apt-get install -y nginx
+
+echo "Hello World!" > /var/www/html/index.html
+
+echo "
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /var/www/html;
+  index index.html;
+
+  rewrite ^/redirect_me$ https://google.com permanent;
+}
+" > /etc/nginx/sites-available/default
+
+service nginx restart
