@@ -22,7 +22,7 @@ server {
     internal;
   }
 
-  rewrite ^/redirect_me$ https://google.com permanent;
+  rewrite ^/redirect_me https://google.com permanent;
 }
 " > /etc/nginx/sites-available/default
 

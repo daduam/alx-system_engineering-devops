@@ -14,7 +14,7 @@ server {
   root /var/www/html;
   index index.html;
 
-  rewrite ^/redirect_me$ https://google.com permanent;
+  rewrite ^/redirect_me https://google.com permanent;
 }
 " > /etc/nginx/sites-available/default
 
