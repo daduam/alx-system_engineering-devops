@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Configures nginx server fixing issues
+
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+service nginx restart
