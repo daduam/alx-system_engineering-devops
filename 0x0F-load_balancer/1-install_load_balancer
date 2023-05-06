@@ -3,12 +3,10 @@
 
 apt-get update
 
-add-apt-repository ppa:vbernat/haproxy-2.6 -y
+add-apt-repository ppa:vbernat/haproxy-2.1 -y
 
 apt-get update
-apt-get install haproxy=2.6.\* -y
-
-systemctl enable haproxy
+apt-get install haproxy=2.1.\* -y
 
 cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.backup
 
