@@ -24,4 +24,4 @@ backend web-backend
     server 161403-web-02 52.72.35.225:80 check
 " >> /etc/haproxy/haproxy.cfg
 
-systemctl restart haproxy
+/etc/init.d/haproxy restart
