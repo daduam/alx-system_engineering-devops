@@ -17,6 +17,9 @@ global
         ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
         ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
 
+	maxconn 2048
+	tune.ssl.default-dh-param 2048
+
 defaults
 	log	global
 	mode	http
@@ -37,12 +40,8 @@ defaults
 
 frontend www
 	bind *:80
-	reqadd X-Forwarded-Proto:\ http
-	default_backend web-backend
-
-frontend www-https
 	bind *:443 ssl crt /etc/haproxy/certs/onlygood.tech.pem
-	reqadd X-Forwarded-Proto:\ https
+	http-request redirect scheme https code 301 unless { ssl_fc }
 	default_backend web-backend
 
 backend web-backend
