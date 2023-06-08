@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Short and sweet nginx issue fix
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-pkill -1 nginx
